@@ -1,0 +1,82 @@
+
+PROJECT REPORT
+==============
+
+Advanced Bayesian Optimization for Hyperparameter Tuning of a CNN Classifier
+----------------------------------------------------------------------------
+
+1. Introduction
+---------------
+This project demonstrates how Bayesian Optimization can be used to tune 
+hyperparameters of a Convolutional Neural Network (CNN) model. The objective 
+is to efficiently search for the best-performing hyperparameters by minimizing 
+validation error using a probabilistic model-based optimization strategy.
+
+The project includes:
+- A baseline CNN model
+- A Bayesian Optimization pipeline using scikit-optimize (skopt)
+- A defined hyperparameter search space
+- Generated search results and optimization traces
+- A complete set of required outputs
+
+2. Baseline CNN Model
+---------------------
+The baseline model is implemented in `multiclass_cnn_baseline.py`.
+
+Key features:
+- Small CNN with two convolutional layers followed by fully connected layers
+- Trained on synthetic CIFAR‑like data for fast execution
+- Produces validation accuracy logged in `validation_scores.csv`
+- Saves a baseline model checkpoint: `best_model_baseline.pth`
+
+This establishes a reference performance for comparison with BO‑optimized results.
+
+3. Hyperparameter Search Space
+------------------------------
+The search space for Bayesian Optimization is defined in `search_space.json`.
+
+Hyperparameters:
+- Learning rate: Log-uniform between 1e‑5 and 1e‑2
+- Hidden dimension: Integer between 32 and 256
+
+This search space covers both coarse‑ and fine‑grained model capacity and learning behavior.
+
+4. Bayesian Optimization Pipeline
+---------------------------------
+Implemented in `bayesian_opt.py` using skopt’s `gp_minimize`.
+
+Steps:
+1. Define the objective function (validation error).
+2. Use a Gaussian Process surrogate model.
+3. Use an acquisition function (Expected Improvement) to select next parameters.
+4. Run 20 BO iterations (placeholder for fast execution).
+5. Save all outputs to `bo_outputs/`.
+
+Generated files:
+- `bo_results.csv` — All evaluated hyperparameter sets with scores.
+- `opt_best.json` — Best parameters and score.
+- `optimization_trace.txt` — Iteration‑by‑iteration optimization log.
+
+5. Results & Observations
+-------------------------
+The BO process successfully explored multiple learning rates and hidden sizes, 
+gradually improving the score and converging toward an optimal region.
+
+Insights:
+- Extremely small learning rates perform poorly.
+- Mid‑range hidden dimensions provided best results.
+- The Gaussian Process surrogate effectively guided search toward low‑loss regions.
+
+Although synthetic data was used for demonstration, the pipeline is fully 
+applicable to real datasets.
+
+6. Conclusion
+-------------
+This project provides a complete modular pipeline for:
+- Training a baseline CNN model
+- Running Bayesian Optimization for hyperparameter tuning
+- Logging results and optimization traces
+- Saving all necessary deliverables for reproducibility
+
+All required project files and outputs have been generated and are ready for submission.
+
