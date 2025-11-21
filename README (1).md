@@ -1,0 +1,1 @@
+# Bayesian Optimization for CNN Hyperparameter Tuning\n\nContains baseline CNN and BO driver scripts. See project_report.txt for details.\n
